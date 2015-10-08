@@ -1,14 +1,14 @@
 //
-//  weiboUITests.swift
-//  weiboUITests
+//  Rui__UITests.swift
+//  Rui微博UITests
 //
-//  Created by 沙睿 on 15/10/7.
+//  Created by 沙睿 on 15/10/8.
 //  Copyright © 2015年 沙睿. All rights reserved.
 //
 
 import XCTest
 
-class weiboUITests: XCTestCase {
+class Rui__UITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
