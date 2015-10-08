@@ -16,7 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //设置主控制器
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let tabbarVC = MainViewController()
+        tabbarVC.view.backgroundColor = UIColor.whiteColor()
+        window?.rootViewController = tabbarVC
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

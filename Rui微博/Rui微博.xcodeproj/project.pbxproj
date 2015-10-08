@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B2F92AA1BC613FD00D66090 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F92A91BC613FD00D66090 /* BaseTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2B54C25D1BC5FFC7001D696F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C25C1BC5FFC7001D696F /* AppDelegate.swift */; };
 		2B54C2651BC5FFC7001D696F /* Rui__.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C2631BC5FFC7001D696F /* Rui__.xcdatamodeld */; };
-		2B54C2671BC5FFC7001D696F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B54C2661BC5FFC7001D696F /* Assets.xcassets */; };
 		2B54C2751BC5FFC7001D696F /* Rui__Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C2741BC5FFC7001D696F /* Rui__Tests.swift */; };
 		2B54C2801BC5FFC7001D696F /* Rui__UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C27F1BC5FFC7001D696F /* Rui__UITests.swift */; };
 		2B54C2981BC603A9001D696F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C2971BC603A9001D696F /* MainViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -17,6 +17,7 @@
 		2B54C29C1BC603C5001D696F /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C29B1BC603C5001D696F /* HomeTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2B54C29E1BC603D0001D696F /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C29D1BC603D0001D696F /* MessageTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2B54C2A01BC603DF001D696F /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C29F1BC603DF001D696F /* ProfileTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		2B54C2A21BC608AC001D696F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B54C2A11BC608AC001D696F /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B2F92A91BC613FD00D66090 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		2B54C2591BC5FFC7001D696F /* Rui微博.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rui微博.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B54C25C1BC5FFC7001D696F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B54C2641BC5FFC7001D696F /* Rui__.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rui__.xcdatamodel; sourceTree = "<group>"; };
-		2B54C2661BC5FFC7001D696F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B54C26B1BC5FFC7001D696F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B54C2701BC5FFC7001D696F /* Rui微博Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rui微博Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B54C2741BC5FFC7001D696F /* Rui__Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rui__Tests.swift; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		2B54C29B1BC603C5001D696F /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		2B54C29D1BC603D0001D696F /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		2B54C29F1BC603DF001D696F /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		2B54C2A11BC608AC001D696F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Rui微博/Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				2B54C25B1BC5FFC7001D696F /* Rui微博 */,
+				2B54C2A11BC608AC001D696F /* Assets.xcassets */,
 				2B54C2731BC5FFC7001D696F /* Rui微博Tests */,
 				2B54C27E1BC5FFC7001D696F /* Rui微博UITests */,
 				2B54C25A1BC5FFC7001D696F /* Products */,
@@ -106,7 +109,6 @@
 				2B54C28D1BC602C6001D696F /* Classes */,
 				2B54C2961BC602FE001D696F /* Tools(工具) */,
 				2B54C25C1BC5FFC7001D696F /* AppDelegate.swift */,
-				2B54C2661BC5FFC7001D696F /* Assets.xcassets */,
 				2B54C26B1BC5FFC7001D696F /* Info.plist */,
 				2B54C2631BC5FFC7001D696F /* Rui__.xcdatamodeld */,
 			);
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				2B54C2971BC603A9001D696F /* MainViewController.swift */,
+				2B2F92A91BC613FD00D66090 /* BaseTableViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -320,7 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B54C2671BC5FFC7001D696F /* Assets.xcassets in Resources */,
+				2B54C2A21BC608AC001D696F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +350,7 @@
 			files = (
 				2B54C2A01BC603DF001D696F /* ProfileTableViewController.swift in Sources */,
 				2B54C2981BC603A9001D696F /* MainViewController.swift in Sources */,
+				2B2F92AA1BC613FD00D66090 /* BaseTableViewController.swift in Sources */,
 				2B54C2651BC5FFC7001D696F /* Rui__.xcdatamodeld in Sources */,
 				2B54C29A1BC603B9001D696F /* DiscoverTableViewController.swift in Sources */,
 				2B54C25D1BC5FFC7001D696F /* AppDelegate.swift in Sources */,
@@ -561,6 +565,7 @@
 				2B54C2861BC5FFC7001D696F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B54C2871BC5FFC7001D696F /* Build configuration list for PBXNativeTarget "Rui微博Tests" */ = {
 			isa = XCConfigurationList;
@@ -569,6 +574,7 @@
 				2B54C2891BC5FFC7001D696F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B54C28A1BC5FFC7001D696F /* Build configuration list for PBXNativeTarget "Rui微博UITests" */ = {
 			isa = XCConfigurationList;
@@ -577,6 +583,7 @@
 				2B54C28C1BC5FFC7001D696F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
