@@ -16,11 +16,10 @@ class MainViewController: UITabBarController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tabBar.addSubview(setButton)
         setButton.frame = CGRectMake(tabBar.bounds.width/5*2, 0, tabBar.bounds.width/5,tabBar.bounds.height)
     }
 
-    private lazy var setButton: UIButton = {
+    private lazy var setButton: UIButton = { 
         var btn = UIButton()
         
         btn.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
@@ -28,9 +27,15 @@ class MainViewController: UITabBarController {
         
         btn.setBackgroundImage(UIImage(named:"tabbar_compose_button"), forState: UIControlState.Normal)
         btn.setBackgroundImage(UIImage(named:"tabbar_compose_button_highlighted"), forState: UIControlState.Selected)
-        btn.addTarget(self, action:"clickButton", forControlEvents: UIControlEvents.TouchUpInside)
+        self.tabBar.addSubview(btn)
+
+        btn.addTarget(self, action:"clickButton", forControlEvents:
+            UIControlEvents.TouchUpInside)
+        
         return btn
     }()
+    
+    
 ///  '+'点击方法，不能为私有，否则调用不到
      func clickButton() {
         print(__FUNCTION__)

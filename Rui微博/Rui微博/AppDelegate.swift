@@ -9,24 +9,40 @@
 import UIKit
 import CoreData
 
+let SRRootControllorSwitch = "SRRootControllorSwitch"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        //注册通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchControllorView:", name: SRRootControllorSwitch, object: nil)
         
         //设置主控制器
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let tabbarVC = MainViewController()
-        tabbarVC.view.backgroundColor = UIColor.whiteColor()
-        window?.rootViewController = tabbarVC
+        window?.rootViewController = defaultViewController()
         window?.makeKeyAndVisible()
         
         return true
     }
-
+    func switchControllorView(n:NSNotification) {
+        let mainVC = n.object as! Bool
+        
+        window?.rootViewController = mainVC ? MainViewController():WelcomeViewController()
+        
+    }
+    private func defaultViewController() -> UIViewController {
+        
+        // 1. 判断用户是否登录，如果没有登录返回主控制器
+        if !UserAccout.userLogon {
+            return MainViewController()
+        }else {
+            return WelcomeViewController()
+        }
+    }
 //    func applicationWillResignActive(application: UIApplication) {
 //        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 //        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

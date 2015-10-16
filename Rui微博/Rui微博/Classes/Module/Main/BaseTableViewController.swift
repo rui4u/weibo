@@ -8,14 +8,22 @@
 
 import UIKit
 
-class BaseTableViewController: UITableViewController {
-    var index = false
+class BaseTableViewController: UITableViewController, VisitorLoginViewDelegate{
+    var userLogon = UserAccout.userLogon
+    var visitorView: VisitorLoginView?
     override func loadView() {
-        index ? super.loadView() : setShowView()
+        userLogon ? super.loadView() : setShowView()
     }
     private func setShowView() {
-        view = UIView()
-        view.backgroundColor = UIColor.redColor()
+        visitorView = VisitorLoginView()
+        visitorView?.delegate = self
+        view = visitorView
     }
-   
+    func visitorLoginViewWillLogin() {
+    let nav = UINavigationController(rootViewController: OAuthViewController())
+    presentViewController(nav, animated: true, completion: nil)
+    }
+    func visitorLoginViewWillRegister() {
+        
+    }
 }
