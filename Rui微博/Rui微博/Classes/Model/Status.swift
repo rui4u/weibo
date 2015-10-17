@@ -50,8 +50,9 @@ class Status: NSObject {
     /// 转发微博
     var retweeted_status: Status?
     
-    class func loadStatus(finished:(dataList: [Status]? , error: NSError?) ->()){
-        NetworkTools.shareNetTooks.loadStatus { (result, error) -> () in
+    class func loadStatus(since_id: Int ,max_id: Int,finished:(dataList: [Status]? , error: NSError?) ->()){
+
+        NetworkTools.shareNetTooks.loadStatus(since_id, max_id: max_id) { (result, error) -> () in
             if error != nil {
                 finished(dataList: nil, error: error)
                 return

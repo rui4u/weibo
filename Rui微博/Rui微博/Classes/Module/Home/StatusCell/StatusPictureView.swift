@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 private let statusPictureViewCellID = "statusPictureViewCellID"
 
 class StatusPictureView: UICollectionView {
@@ -34,8 +34,21 @@ class StatusPictureView: UICollectionView {
             return CGSizeZero
         }
         if itemCount == 1 {
-            let size = CGSizeMake(150, 120)
+            
+            let key = status!.pictureURLs![0].absoluteString
+            //利用SDWebImage 进行缓存
+
+            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
+            var size = CGSizeMake(150, 120)
+            
+            if image != nil {
+                size = image.size
+            }
+            size.width = size.width < 40 ? 40 : size.width
+            size.width = size.width > UIScreen.mainScreen().bounds.width ? 150 : size.width
+            
             pictureLayout.itemSize = size
+            
             return size
         }
         if itemCount == 4 {
@@ -88,6 +101,7 @@ class StatusPictureViewCell: UICollectionViewCell {
     var imageURL: NSURL? {
         didSet {
             iconView.sd_setImageWithURL(imageURL!)
+
         }
     }
     
@@ -109,6 +123,13 @@ class StatusPictureViewCell: UICollectionViewCell {
     }
     
     // MARK: 懒加载控件
-    private lazy var iconView: UIImageView = UIImageView()
+    private lazy var iconView: UIImageView = {
+        var iv = UIImageView()
+        //设置图片填充模式
+        iv.contentMode = UIViewContentMode.ScaleAspectFill
+        
+        iv.clipsToBounds = true
+        return iv
+        }()
 }
 

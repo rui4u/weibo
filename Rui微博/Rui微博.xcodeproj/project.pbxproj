@@ -29,6 +29,8 @@
 		2B54C2A01BC603DF001D696F /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B54C29F1BC603DF001D696F /* ProfileTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		2B54C2A21BC608AC001D696F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B54C2A11BC608AC001D696F /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		2B7422341BC9272F003070A5 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7422331BC9272E003070A5 /* NetworkTools.swift */; settings = {ASSET_TAGS = (); }; };
+		2BC38B1B1BD119E700AF4499 /* SRRefreshControllor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC38B1A1BD119E700AF4499 /* SRRefreshControllor.swift */; settings = {ASSET_TAGS = (); }; };
+		2BECC6131BD1F517008AC988 /* SRRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BECC6121BD1F517008AC988 /* SRRefreshView.xib */; settings = {ASSET_TAGS = (); }; };
 		2BEECF491BD0037900D7CBD0 /* StatusForwardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEECF481BD0037900D7CBD0 /* StatusForwardCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2BEECF4B1BD0078D00D7CBD0 /* StatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEECF4A1BD0078D00D7CBD0 /* StatusNormalCell.swift */; settings = {ASSET_TAGS = (); }; };
 		2BF424C81BCCF7CF00998FB0 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF424C71BCCF7CF00998FB0 /* WelcomeViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -84,6 +86,8 @@
 		2B54C29F1BC603DF001D696F /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		2B54C2A11BC608AC001D696F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Rui微博/Assets.xcassets"; sourceTree = "<group>"; };
 		2B7422331BC9272E003070A5 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
+		2BC38B1A1BD119E700AF4499 /* SRRefreshControllor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRRefreshControllor.swift; sourceTree = "<group>"; };
+		2BECC6121BD1F517008AC988 /* SRRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SRRefreshView.xib; sourceTree = "<group>"; };
 		2BEECF481BD0037900D7CBD0 /* StatusForwardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusForwardCell.swift; sourceTree = "<group>"; };
 		2BEECF4A1BD0078D00D7CBD0 /* StatusNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusNormalCell.swift; sourceTree = "<group>"; };
 		2BF424C71BCCF7CF00998FB0 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 		2B54C2921BC602C6001D696F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				2BC38B191BD119B000AF4499 /* Refresh */,
 				2B01B3D51BCF57DD00D245D0 /* StatusCell */,
 				2B54C29B1BC603C5001D696F /* HomeTableViewController.swift */,
 			);
@@ -292,6 +297,15 @@
 			);
 			name = "Tools(工具)";
 			path = Classes/Tools;
+			sourceTree = "<group>";
+		};
+		2BC38B191BD119B000AF4499 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				2BC38B1A1BD119E700AF4499 /* SRRefreshControllor.swift */,
+				2BECC6121BD1F517008AC988 /* SRRefreshView.xib */,
+			);
+			path = Refresh;
 			sourceTree = "<group>";
 		};
 		2BF424C61BCCF7B800998FB0 /* NewFeature */ = {
@@ -419,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B54C2A21BC608AC001D696F /* Assets.xcassets in Resources */,
+				2BECC6131BD1F517008AC988 /* SRRefreshView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +508,7 @@
 			files = (
 				2B01B3E11BCF5AB000D245D0 /* UILabel+Extension.swift in Sources */,
 				2B0754961BCB3E3C00E4E030 /* UserAccout.swift in Sources */,
+				2BC38B1B1BD119E700AF4499 /* SRRefreshControllor.swift in Sources */,
 				2B54C2A01BC603DF001D696F /* ProfileTableViewController.swift in Sources */,
 				2B54C2981BC603A9001D696F /* MainViewController.swift in Sources */,
 				2B7422341BC9272F003070A5 /* NetworkTools.swift in Sources */,
