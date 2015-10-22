@@ -18,19 +18,50 @@ class HomeTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if !UserAccout.userLogon {
         visitorView?.setupViewInfo(true, imageName: "visitordiscover_feed_image_house", title: "关注一些人，回这里看看有什么惊喜")
+            
+            return
+        }
+        //注册通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "selectPicture:", name: SRStatusCellSelectPictureNotification, object: nil)
+        
+        
         prepareTableView()
         loadData()
 
     }
+    //监听方法
+    @objc private func selectPicture(n: NSNotification){
+        
+        guard let urls = n.userInfo![SRStatusCellSelectPictureURLKey] as? [NSURL] else{
+            print("urls为空")
+            return
+        }
+        guard let index = n.userInfo![SRStatusCellSelectPictureIndexKey] as? Int else{
+            print("index为空")
+            return
+        }
+        let vc = PhotoBrowserViewController(url: urls, index: index)
+        
+        vc.transitioningDelegate = self
+        vc.modalPresentationStyle =  UIModalPresentationStyle.Custom
+        
+        presentViewController(vc, animated: true, completion: nil)
+        
+      
+    }
     
     private func prepareTableView() {
+        
         tableView.registerClass(StatusNormalCell.self, forCellReuseIdentifier: StatusCellIdentifier.NormalCell.rawValue)
         tableView.registerClass(StatusForwardCell.self, forCellReuseIdentifier: StatusCellIdentifier.ForwardCell.rawValue)
         //预估行高
         tableView.estimatedRowHeight = 300
         //取消cell的线
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        
+     
         
         //自定义刷新
         refreshControl = SRRefreshControl()
@@ -96,6 +127,7 @@ class HomeTableViewController: BaseTableViewController {
         
         tipLabel.text = (count == 0) ? "暂时没有新的微博" : "刷新到\(count)条微博"
         // 获取初始位置
+        
         let rect = tipLabel.frame
         
         UIView.animateWithDuration(2.0, animations: { () -> Void in
@@ -108,6 +140,8 @@ class HomeTableViewController: BaseTableViewController {
             }) { (_) -> Void in
                self.tipLabel.frame = rect
         }
+        
+        
     }
     
     //数据源方法
@@ -118,8 +152,8 @@ class HomeTableViewController: BaseTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let status = statuses![indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellIdentifier.cellId(status)) as! StatusCell
-        cell.status = statuses![indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellIdentifier.cellId(status)) as? StatusCell
+      
         
         //判断是否需要下拉刷新
         if indexPath.row == statuses!.count - 1 {
@@ -127,7 +161,9 @@ class HomeTableViewController: BaseTableViewController {
             loadData()
         }
         
-        return cell
+        cell!.status = statuses![indexPath.row]
+        
+        return cell!
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -136,9 +172,9 @@ class HomeTableViewController: BaseTableViewController {
         if let h = status.rowHeight {
             return h
         }
-        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellIdentifier.cellId(status)) as! StatusCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(StatusCellIdentifier.cellId(status)) as?StatusCell
       
-        status.rowHeight =  cell.rowHeight(status)
+        status.rowHeight =  cell!.rowHeight(status)
         return status.rowHeight!
 
     }
@@ -156,5 +192,75 @@ class HomeTableViewController: BaseTableViewController {
         self.navigationController?.navigationBar.insertSubview(label, atIndex: 0)
         return label
     }()
+    private var isPresented = false
+}
+
+extension HomeTableViewController : UIViewControllerTransitioningDelegate {
     
+    //返回提供自定义转场动画的对象，该对象必须遵守UIViewControllerAnimatedTransitioning协议
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        isPresented = true
+        return self
+    }
+    
+    //提供一个解除转场动画的对象
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        isPresented = false
+        return self
+    }
+}
+
+extension HomeTableViewController: UIViewControllerAnimatedTransitioning {
+    
+    //必须实现的两个方法
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+        
+        return 2.0
+    }
+    
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        
+        let fromVC = transitionContext.viewForKey(UITransitionContextFromViewKey)
+        let toVC = transitionContext.viewForKey(UITransitionContextToViewKey)
+        
+        print(fromVC)
+        print(toVC)
+        
+        if isPresented {
+            
+            let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+            
+            transitionContext.containerView()?.addSubview(toView)
+            toView.alpha = 0
+            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+                toView.alpha = 1.0
+                }, completion: { (_) -> Void in
+              
+                    //动画执行后，一定要执行，否则系统会一直等待。无法进行后续的交互
+                    transitionContext.completeTransition(true)
+                    
+            })
+            
+        } else {
+            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
+            
+            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+                
+                fromView.alpha = 0.0
+                
+                }, completion: { (_) -> Void in
+                    
+                  fromView.removeFromSuperview()
+                    
+                    // 解除转场时，会把 容器视图以及内部的内容一起销毁
+                    transitionContext.completeTransition(true)
+                    
+            })
+        }
+        
+        
+    }
 }

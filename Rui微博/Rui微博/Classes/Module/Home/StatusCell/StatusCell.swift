@@ -7,17 +7,16 @@
 //
 
 import UIKit
-
 enum StatusCellIdentifier: String {
     case NormalCell = "NormalCell"
     case ForwardCell = "ForwardCell"
     
-    static func cellId(status: Status) ->String {
-        
-     return (status.retweeted_status == nil) ? StatusCellIdentifier.NormalCell.rawValue :StatusCellIdentifier.ForwardCell.rawValue
+    /// 静态函数
+    /// 根据微博数据，返回对应的标示符
+    static func cellId(status: Status) -> String {
+        return status.retweeted_status == nil ? StatusCellIdentifier.NormalCell.rawValue : StatusCellIdentifier.ForwardCell.rawValue
     }
 }
-
 
 class StatusCell: UITableViewCell {
     

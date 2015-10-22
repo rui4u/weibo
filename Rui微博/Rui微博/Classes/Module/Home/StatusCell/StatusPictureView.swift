@@ -8,6 +8,14 @@
 
 import UIKit
 import SDWebImage
+
+/// 选中照片通知
+let SRStatusCellSelectPictureNotification = "SRStatusCellSelectPictureNotification"
+/// URL 的 KEY
+let SRStatusCellSelectPictureURLKey = "SRStatusCellSelectPictureURLKey"
+/// IndexPath 的 KEY
+let SRStatusCellSelectPictureIndexKey = "SRStatusCellSelectPictureIndexKey"
+
 private let statusPictureViewCellID = "statusPictureViewCellID"
 
 class StatusPictureView: UICollectionView {
@@ -72,6 +80,7 @@ class StatusPictureView: UICollectionView {
         /// 注册cell
         registerClass(StatusPictureViewCell.self, forCellWithReuseIdentifier: statusPictureViewCellID)
         self.dataSource = self
+        self.delegate = self
     }
 
     
@@ -80,7 +89,19 @@ class StatusPictureView: UICollectionView {
     }
 }
 
-extension StatusPictureView: UICollectionViewDataSource {
+extension StatusPictureView: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(SRStatusCellSelectPictureNotification,
+            object: self,
+            userInfo: [SRStatusCellSelectPictureURLKey: status!.largePictureURLs!,
+               SRStatusCellSelectPictureIndexKey: indexPath.item])
+        
+        // 监听方法，执行完成之后，才会被调用
+        print("come here")
+    }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return status?.pictureURLs?.count ?? 0
@@ -101,7 +122,9 @@ class StatusPictureViewCell: UICollectionViewCell {
     var imageURL: NSURL? {
         didSet {
             iconView.sd_setImageWithURL(imageURL!)
-
+            // 根据 URL 的扩展名判断是否是 gif / GIF
+            // 提示用户，图大，耗流量，好玩！
+            gifImageView.hidden = ((imageURL!.absoluteString as NSString).pathExtension.lowercaseString != "gif")
         }
     }
     
@@ -118,8 +141,10 @@ class StatusPictureViewCell: UICollectionViewCell {
     
     private func setupUI() {
         contentView.addSubview(iconView)
-        
+        iconView.addSubview(gifImageView)
         iconView.ff_Fill(contentView)
+        
+        gifImageView.ff_AlignInner(type: ff_AlignType.BottomRight, referView: iconView, size: nil)
     }
     
     // MARK: 懒加载控件
@@ -131,5 +156,7 @@ class StatusPictureViewCell: UICollectionViewCell {
         iv.clipsToBounds = true
         return iv
         }()
+    
+    private lazy var gifImageView: UIImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
 }
 

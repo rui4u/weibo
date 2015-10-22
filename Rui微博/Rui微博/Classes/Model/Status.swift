@@ -25,19 +25,33 @@ class Status: NSObject {
             }
             
             storedPictureURLs = [NSURL]()
+            storeLargePictureURLs = [NSURL]()
             for dict in pic_urls! {
                 if let urlString = dict["thumbnail_pic"] as? String {
+                    //生成缩略图的url
                     storedPictureURLs?.append(NSURL(string: urlString)!)
+                    
+                    //生成大图的URL
+                   let largeURLString =  urlString.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+                    storeLargePictureURLs?.append(NSURL(string: largeURLString)!)
+                    
                 }
             }
         }
     
     }
     
+    /// 配图的URL数组
     private var storedPictureURLs: [NSURL]?
+    // 大图的URL
+    private var storeLargePictureURLs: [NSURL]?
+    
+    //返回大图的URL 
+    var largePictureURLs: [NSURL]? {
+        return retweeted_status == nil ? storeLargePictureURLs : retweeted_status?.storeLargePictureURLs
+    }
     /// 用户
     var user: User?
-    /// 配图的URL数组
     /// 行高
     var rowHeight: CGFloat?
     

@@ -9,7 +9,15 @@
 import UIKit
 
 extension UIButton {
-    
+    convenience init(title: String,fontSize: CGFloat = 12, textcolor: UIColor = UIColor.darkGrayColor(),backColor: UIColor = UIColor.lightGrayColor()) {
+        
+        self.init()
+        
+        setTitle(title, forState: UIControlState.Normal)
+        backgroundColor = backColor
+        setTitleColor(textcolor, forState: UIControlState.Normal)
+        titleLabel?.font = UIFont.systemFontOfSize(fontSize)
+    }
     convenience init(title: String, imageName: String, fontSize: CGFloat = 12, color: UIColor = UIColor.darkGrayColor()) {
         
         self.init()

@@ -38,7 +38,9 @@ class MainViewController: UITabBarController {
     
 ///  '+'点击方法，不能为私有，否则调用不到
      func clickButton() {
-        print(__FUNCTION__)
+        let vc = UserAccout.userLogon ? ComposeViewController() : OAuthViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        presentViewController(nav, animated: true, completion: nil)
     }
     
     private func setup() {
