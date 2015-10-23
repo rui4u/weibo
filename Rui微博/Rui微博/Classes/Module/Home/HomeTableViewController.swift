@@ -38,11 +38,24 @@ class HomeTableViewController: BaseTableViewController {
             print("urls为空")
             return
         }
-        guard let index = n.userInfo![SRStatusCellSelectPictureIndexKey] as? Int else{
+        guard let index = n.userInfo![SRStatusCellSelectPictureIndexKey] as? NSIndexPath else{
             print("index为空")
             return
         }
-        let vc = PhotoBrowserViewController(url: urls, index: index)
+        
+        guard let picView = n.object as? StatusPictureView else {
+            print("图片不存在")
+            return
+        }
+        //记录属性
+        pictureView = picView
+        presentViewIndexPath = index
+        //设置专场动画View
+        presentIconView.sd_setImageWithURL(urls[index.item])
+        
+        
+        
+        let vc = PhotoBrowserViewController(url: urls, index: index.item)
         
         vc.transitioningDelegate = self
         vc.modalPresentationStyle =  UIModalPresentationStyle.Custom
@@ -193,6 +206,17 @@ class HomeTableViewController: BaseTableViewController {
         return label
     }()
     private var isPresented = false
+    //专场过程中的图像视图
+    private lazy var presentIconView: UIImageView = {
+        let iv =  UIImageView()
+        iv.contentMode = UIViewContentMode.ScaleAspectFill
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
+    private var pictureView: StatusPictureView?
+    private var presentViewIndexPath : NSIndexPath?
+    
 }
 
 extension HomeTableViewController : UIViewControllerTransitioningDelegate {
@@ -223,22 +247,32 @@ extension HomeTableViewController: UIViewControllerAnimatedTransitioning {
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromVC = transitionContext.viewForKey(UITransitionContextFromViewKey)
-        let toVC = transitionContext.viewForKey(UITransitionContextToViewKey)
+//        let fromVC = transitionContext.viewForKey(UITransitionContextFromViewKey)
+//        let toVC = transitionContext.viewForKey(UITransitionContextToViewKey)
         
-        print(fromVC)
-        print(toVC)
+//        print(fromVC)
+//        print(toVC)
         
         if isPresented {
             
             let toView = transitionContext.viewForKey(UITransitionContextToViewKey)!
+            //将动画图像添加到目标视图中
+            transitionContext.containerView()?.addSubview(presentIconView)
+            //设置图像视图起始位置
             
-            transitionContext.containerView()?.addSubview(toView)
-            toView.alpha = 0
+            let fromRect = pictureView?.cellScreenFrame(presentViewIndexPath!)
+            let toRect = pictureView?.cellFullScreenFrame(presentViewIndexPath!)
+            
+            presentIconView.frame = fromRect!
+
             UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-                toView.alpha = 1.0
+
+                self.presentIconView.frame = toRect!
                 }, completion: { (_) -> Void in
               
+                    self.presentIconView.removeFromSuperview()
+                    toView.backgroundColor = UIColor.clearColor()
+                    transitionContext.containerView()?.addSubview(toView)
                     //动画执行后，一定要执行，否则系统会一直等待。无法进行后续的交互
                     transitionContext.completeTransition(true)
                     

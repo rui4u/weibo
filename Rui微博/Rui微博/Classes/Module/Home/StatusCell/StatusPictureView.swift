@@ -96,11 +96,40 @@ extension StatusPictureView: UICollectionViewDataSource, UICollectionViewDelegat
         NSNotificationCenter.defaultCenter().postNotificationName(SRStatusCellSelectPictureNotification,
             object: self,
             userInfo: [SRStatusCellSelectPictureURLKey: status!.largePictureURLs!,
-               SRStatusCellSelectPictureIndexKey: indexPath.item])
+               SRStatusCellSelectPictureIndexKey: indexPath])
+        
+        //获取当前cell
+//        let v = UIView()
+//        v.frame = cellFullScreenFrame(indexPath)
+//        v.backgroundColor = UIColor.redColor()
+//        UIApplication.sharedApplication().keyWindow?.addSubview(v)
         
         // 监听方法，执行完成之后，才会被调用
-        print("come here")
+//        print("come here")
+        
+        
     }
+    
+    func cellScreenFrame(indexPath: NSIndexPath) -> CGRect {
+        let cell = self.cellForItemAtIndexPath(indexPath)!
+        //cell相对屏幕的frame
+        return convertRect(cell.frame, toCoordinateSpace: UIApplication.sharedApplication().keyWindow!)
+    }
+    
+    func cellFullScreenFrame(indexPath: NSIndexPath) -> CGRect {
+    
+        let key = status?.pictureURLs![indexPath.item].absoluteString
+        let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
+        let scale = image.size.height / image.size.width
+        let height = UIScreen.mainScreen().bounds.width * scale
+        
+        var y :CGFloat = 0
+        if height < UIScreen.mainScreen().bounds.height {
+            y = (UIScreen.mainScreen().bounds.height - height) * 0.5
+        }
+        return CGRect(x: 0, y: y, width: UIScreen.mainScreen().bounds.width, height: height)
+    }
+    
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -112,6 +141,8 @@ extension StatusPictureView: UICollectionViewDataSource, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(statusPictureViewCellID, forIndexPath: indexPath) as! StatusPictureViewCell
         
         cell.imageURL = status!.pictureURLs![indexPath.item]
+        
+     
         
         return cell
     }

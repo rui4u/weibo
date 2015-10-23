@@ -12,7 +12,7 @@ class PhotoBrowserCell: UICollectionViewCell ,UIScrollViewDelegate {
     
     var imageURL: NSURL? {
         didSet{
-            print(imageURL)
+//            print(imageURL)
             
              indicator.startAnimating()
             //清空缓存
@@ -62,13 +62,13 @@ class PhotoBrowserCell: UICollectionViewCell ,UIScrollViewDelegate {
     private func setupImagePostion() {
         let s = setImageScale(imageView.image!)
 
-        print("---\(s.height)")
+//        print("---\(s.height)")
         if s.height < scrollView.bounds.height {
             
             let y = (scrollView.bounds.height - s.height) * 0.5
             imageView.frame = CGRect(origin: CGPointZero, size: s)
             
-            print(y)
+//            print(y)
             
             // 设置间距，能够保证缩放完成后，同样能够显示完整画面
             scrollView.contentInset = UIEdgeInsets(top: y, left: 0, bottom: y, right: 0)

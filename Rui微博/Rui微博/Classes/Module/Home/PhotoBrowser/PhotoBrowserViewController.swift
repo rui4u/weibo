@@ -77,8 +77,8 @@ class PhotoBrowserViewController: UIViewController {
     }
     
     func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject?) {
-        print(error)
-        print(image)
+//        print(error)
+//        print(image)
         
         let msg = (error == nil) ? "保存成功" : "保存失败"
         SVProgressHUD.showInfoWithStatus(msg)
@@ -151,7 +151,7 @@ extension PhotoBrowserViewController : UICollectionViewDataSource{
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         
-        
+        collectionView.backgroundColor = UIColor.clearColor()
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(SRCollectionViewCell, forIndexPath: indexPath) as! PhotoBrowserCell
         
 //        cell.backgroundColor = UIColor.randomColor()

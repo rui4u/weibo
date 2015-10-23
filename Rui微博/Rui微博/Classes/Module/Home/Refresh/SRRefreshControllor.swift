@@ -26,7 +26,7 @@ import UIKit
         
         //监听
         override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-            print(frame.origin.y)
+//            print(frame.origin.y)
             
             if refreshing {
                 refreshView.startLoading()

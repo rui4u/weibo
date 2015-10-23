@@ -40,8 +40,8 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         let url = request.URL!.absoluteString
-        print(url)
-        print(url.hasPrefix(NetworkTools.shareNetTooks.redirectUri))
+//        print(url)
+//        print(url.hasPrefix(NetworkTools.shareNetTooks.redirectUri))
         /// 判断是否包含回调地址
         if !url.hasPrefix(NetworkTools.shareNetTooks.redirectUri) {
             return true
@@ -49,7 +49,7 @@ class OAuthViewController: UIViewController,UIWebViewDelegate {
         //query 获取回调中的token
         if let query = request.URL?.query where query.hasPrefix("code=") {
             let code = query.substringFromIndex("code=".endIndex)
-            print("code = " + code)
+//            print("code = " + code)
             //换取TOKEN
             loadAccessToken(code)
         }else {
