@@ -277,24 +277,43 @@ extension HomeTableViewController: UIViewControllerAnimatedTransitioning {
                     transitionContext.completeTransition(true)
                     
             })
+            return
             
-        } else {
-            let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
-            
-            UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
-                
-                fromView.alpha = 0.0
-                
-                }, completion: { (_) -> Void in
-                    
-                  fromView.removeFromSuperview()
-                    
-                    // 解除转场时，会把 容器视图以及内部的内容一起销毁
-                    transitionContext.completeTransition(true)
-                    
-            })
         }
+        //获取控制器
+        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! PhotoBrowserViewController
+        //获取索引
+        let index = fromVC.currentImageIndex()
+        //获取初始rect
+        let rect = pictureView!.cellScreenFrame(index)
         
+        let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
+        
+        let iv = fromVC.currentImageView()
+        
+        iv.center = fromView.center
+        
+        // 将当前图像视图，添加到容器视图
+        transitionContext.containerView()?.addSubview(iv)
+        
+        // 将 fromView 从容器视图中移出
+        fromView.removeFromSuperview()
+        
+        
+        
+        UIView.animateWithDuration(transitionDuration(transitionContext), animations: { () -> Void in
+            
+            iv.frame = rect
+            
+            
+            }, completion: { (_) -> Void in
+                
+                iv.removeFromSuperview()
+                
+                // 解除转场时，会把 容器视图以及内部的内容一起销毁
+                transitionContext.completeTransition(true)
+                
+        })
         
     }
 }

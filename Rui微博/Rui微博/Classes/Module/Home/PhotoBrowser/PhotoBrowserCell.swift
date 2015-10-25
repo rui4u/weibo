@@ -8,7 +8,20 @@
 
 import UIKit
 import SDWebImage
+
+protocol PhotoBrowserCellDelegate: NSObjectProtocol{
+
+    //cell缩放比例
+    func photoBrowserCellZomm(scale: CGFloat)
+    
+    //结束缩放
+    func photoBrowserCellEndZomm()
+
+}
+
 class PhotoBrowserCell: UICollectionViewCell ,UIScrollViewDelegate {
+    
+    weak var photoDelegate: PhotoBrowserCellDelegate?
     
     var imageURL: NSURL? {
         didSet{
@@ -128,6 +141,16 @@ class PhotoBrowserCell: UICollectionViewCell ,UIScrollViewDelegate {
         
         scrollView.contentInset = UIEdgeInsetsMake(offsetY, offsetX, 0, 0)
         
+        //执行代理
+        photoDelegate?.photoBrowserCellEndZomm()
+    }
+    
+    func scrollViewDidZoom(scrollView: UIScrollView) {
+        // a,d 缩放比例
+        // tx ty 位移
+        //a,b,c,d共同决定旋转
+        print(imageView.transform)
+        photoDelegate?.photoBrowserCellZomm(imageView.transform.a)
     }
     
     
@@ -137,3 +160,4 @@ class PhotoBrowserCell: UICollectionViewCell ,UIScrollViewDelegate {
     /// 大菊花
     private lazy var indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 }
+
