@@ -67,6 +67,9 @@ class PhotoBrowserCell: UICollectionViewCell ,UIScrollViewDelegate {
     }
     
     private func resetImageInset() {
+        //解决第三张图片无法放大的问题
+        imageView.transform = CGAffineTransformIdentity
+        
         scrollView.contentInset = UIEdgeInsetsZero
         scrollView.contentOffset = CGPointZero
         scrollView.contentSize = CGSizeZero
