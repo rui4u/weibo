@@ -17,6 +17,7 @@
 		2B01B3E01BCF5AB000D245D0 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B01B3DE1BCF5AB000D245D0 /* UIButton+Extension.swift */; };
 		2B01B3E11BCF5AB000D245D0 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B01B3DF1BCF5AB000D245D0 /* UILabel+Extension.swift */; };
 		2B0699341BDCC7EC00CC05AB /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0699331BDCC7EC00CC05AB /* NSDate+Extension.swift */; };
+		2B0699561BDCD16900CC05AB /* String+Regular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0699551BDCD16900CC05AB /* String+Regular.swift */; };
 		2B0754961BCB3E3C00E4E030 /* UserAccout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0754951BCB3E3C00E4E030 /* UserAccout.swift */; };
 		2B08B5101BCFC755003BC1F8 /* StatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08B50F1BCFC755003BC1F8 /* StatusPictureView.swift */; };
 		2B0BBA801BCBCB65007E8941 /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0BBA7F1BCBCB65007E8941 /* OAuthViewController.swift */; };
@@ -74,6 +75,7 @@
 		2B01B3DE1BCF5AB000D245D0 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		2B01B3DF1BCF5AB000D245D0 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2B0699331BDCC7EC00CC05AB /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		2B0699551BDCD16900CC05AB /* String+Regular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regular.swift"; sourceTree = "<group>"; };
 		2B0754951BCB3E3C00E4E030 /* UserAccout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccout.swift; sourceTree = "<group>"; };
 		2B08B50F1BCFC755003BC1F8 /* StatusPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPictureView.swift; sourceTree = "<group>"; };
 		2B0BBA7F1BCBCB65007E8941 /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 		2B54C2961BC602FE001D696F /* Tools(工具) */ = {
 			isa = PBXGroup;
 			children = (
+				2B0699551BDCD16900CC05AB /* String+Regular.swift */,
 				2B0699331BDCC7EC00CC05AB /* NSDate+Extension.swift */,
 				2B6BC31A1BD3B03200F6F5F8 /* UIBarButtonItem+Extension.swift */,
 				2B01B3DE1BCF5AB000D245D0 /* UIButton+Extension.swift */,
@@ -549,6 +552,7 @@
 				2B7422341BC9272F003070A5 /* NetworkTools.swift in Sources */,
 				2B0BBA801BCBCB65007E8941 /* OAuthViewController.swift in Sources */,
 				2B01B3D71BCF582200D245D0 /* StatusCell.swift in Sources */,
+				2B0699561BDCD16900CC05AB /* String+Regular.swift in Sources */,
 				2B015B961BD5065A005AF508 /* UIColor+Extension.swift in Sources */,
 				2B2F92AA1BC613FD00D66090 /* BaseTableViewController.swift in Sources */,
 				2B6BC3191BD3AF7B00F6F5F8 /* ComposeViewController.swift in Sources */,

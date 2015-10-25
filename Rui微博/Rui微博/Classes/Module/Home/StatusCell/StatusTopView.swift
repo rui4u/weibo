@@ -19,13 +19,14 @@ class StatusTopView: UIView {
             nameLabel.text = status?.user?.name ?? ""
             vipIconView.image = status?.user?.vipImage
             memberIconView.image = status?.user?.memberImage
-            
-            // TODO: 后面会讲
-            
+    
+            //设置时间
             timeLabel.text = NSDate.sinaDate(status?.created_at ?? "")?.dateDescription
-//            timeLabel.text = status?.created_at ?? ""
-            print(timeLabel.text)
-            sourceLabel.text = "来自 微博.com"
+            //设置来源
+            sourceLabel.text = status?.source?.href().text
+//            sourceLabel.text = String(status?.source)
+//            print(status?.source)
+
         }
     }
     
